@@ -1,0 +1,38 @@
+<div class="d-flex flex-column align-items-center">
+    <div style="width: 1200px;">
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <h2 class="mb-5">Email Histories</h2>
+            <a href="/email_form" class="btn btn-success">Form</a>
+        </div>
+
+        <table class="table w-100">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Send At</th>
+                    <th scope="col">Show detail</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% emails.forEach((email, index) => { %>
+                    <tr>
+                        <th scope="row"><%= index + 1 %></th>
+                        <td><%= email.to %></td>
+                        <td><%= email.title %></td>
+                        <td>
+                            <p class="btn <%= email.status ? "btn-success" : "btn-danger" %>"><%= email.status ? 'Đã đọc' : 'Chưa đọc' %></p>
+                        </td>
+                        <td><%= email.created_at %></td>
+                        <td>
+                            <a href=<%= `/email_detail/${email.id}` %> class="btn btn-primary">Detail</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
