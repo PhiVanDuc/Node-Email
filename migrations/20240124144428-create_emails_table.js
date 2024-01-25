@@ -1,10 +1,12 @@
 'use strict';
 
-const { QueryInterface, NOW } = require('sequelize');
+const moment = require('moment-timezone');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    moment.tz.setDefault('Asia/Ho_Chi_Minh');
+
     await queryInterface.createTable('emails', {
       id: {
         type: Sequelize.INTEGER,
@@ -26,11 +28,11 @@ module.exports = {
       },
       created_at: {
         type: Sequelize.DATE,
-        defaultValue: NOW(),
+        defaultValue: moment.tz.setDefault('Asia/Ho_Chi_Minh')
       },
       updated_at: {
         type: Sequelize.DATE,
-        defaultValue: NOW(),
+        defaultValue: moment.tz.setDefault('Asia/Ho_Chi_Minh')
       },
     })
   },
